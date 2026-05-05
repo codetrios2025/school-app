@@ -19,6 +19,7 @@ import ReportPage from "./pages/ReportPage";
 import DashboardLayout from "./layouts/DashboardLayout";
 import NotificationHistory from "./pages/NotificationHistory";
 import StudentAttendanceHistory from "./pages/StudentAttendanceHistory";
+import MyAttendance from "./pages/MyAttendance";
 
 export default function App() {
   const user = useSelector((state) => state.auth.user);
@@ -107,6 +108,7 @@ export default function App() {
           path="/attendance-history"
           element={<StudentAttendanceHistory />}
         />
+        <Route path="/my-attendance" element={<MyAttendance />} />
       </Routes>
     </BrowserRouter>
   );

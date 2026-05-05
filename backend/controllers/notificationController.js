@@ -435,7 +435,7 @@ exports.getNotificationsWithFilter = async (req, res) => {
 };
 
 // ❌ DELETE notification
-exports.deleteNotification = async (req, res) => {
+exports.deleteNotificationold = async (req, res) => {
   try {
     const notif = await Notification.findById(req.params.id);
 
@@ -451,6 +451,95 @@ exports.deleteNotification = async (req, res) => {
     await notif.deleteOne();
 
     res.json({ success: true, message: "Notification deleted" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.deleteNotification = async (req, res) => {
+  try {
+    if (req.user.role !== "admin") {
+      return res.status(403).json({
+        message: "Only admin can delete",
+      });
+    }
+
+    await Notification.findByIdAndDelete(req.params.id);
+
+    res.json({
+      success: true,
+      message: "Notification deleted",
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getNotifications = async (req, res) => {
+  try {
+    const {
+      page = 1,
+      limit = 10,
+      search = "",
+      classId,
+      type,
+      startDate,
+      endDate,
+    } = req.query;
+
+    let query = {};
+
+    // 👨‍💼 ADMIN → all
+    if (req.user.role === "admin") {
+      query = {};
+    }
+
+    // 👩‍🏫 TEACHER → own notifications
+    if (req.user.role === "teacher") {
+      query.sender = req.user.id;
+    }
+
+    // 🔍 search
+    if (search) {
+      query.$or = [
+        { title: { $regex: search, $options: "i" } },
+        { message: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    // 📘 class filter
+    if (classId) {
+      query.classId = classId;
+    }
+
+    // 📌 type filter
+    if (type) {
+      query.type = type;
+    }
+
+    // 📅 date filter
+    if (startDate && endDate) {
+      query.createdAt = {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate),
+      };
+    }
+
+    const total = await Notification.countDocuments(query);
+
+    const data = await Notification.find(query)
+      .populate("sender", "name")
+      .populate("classId", "className section")
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
+
+    res.json({
+      success: true,
+      data,
+      total,
+      totalPages: Math.ceil(total / limit),
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

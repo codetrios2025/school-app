@@ -80,6 +80,7 @@ app.use("/api/teachers", require("./routes/teacherRoutes"));
 app.use("/api/attendance", require("./routes/attendanceRoutes"));
 app.use("/api/reports", require("./routes/reportRoutes"));
 app.use("/api/notifications", require("./routes/notificationRoutes"));
+app.use("/api/parent", require("./routes/parentRoutes"));
 
 // ==============================
 // START SERVER

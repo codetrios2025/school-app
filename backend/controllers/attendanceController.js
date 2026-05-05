@@ -306,3 +306,28 @@ exports.getStudentSummary = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+exports.getMyAttendance = async (req, res) => {
+  try {
+    const student = await Student.findOne({
+      parentEmail: req.user.email,
+    });
+
+    if (!student) {
+      return res.json({ success: true, data: [] });
+    }
+
+    const records = await Attendance.find({
+      studentId: student.userId,
+    })
+      .populate("subjectId", "name")
+      .sort({ date: -1 });
+
+    res.json({
+      success: true,
+      data: records,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

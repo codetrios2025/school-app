@@ -10,7 +10,8 @@ export default function Dashboard() {
 
   if (user.role === "admin") return <AdminDashboard />;
   if (user.role === "teacher") return <TeacherDashboard />;
-  if (user.role === "parent") return <ParentDashboard />;
+  if (user.role === "parent" || user.role === "student")
+    return <ParentDashboard />;
 
   return <div>No dashboard available</div>;
 }

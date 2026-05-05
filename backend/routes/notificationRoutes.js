@@ -10,11 +10,13 @@ const {
   getTeacherClasses,
   getNotificationsWithFilter,
   deleteNotification,
+  getNotifications,
 } = require("../controllers/notificationController");
 
 const { protect: auth } = require("../middleware/authMiddleware");
 
 router.post("/", auth, sendNotification);
+router.get("/", auth, getNotifications);
 
 router.post("/broadcast", auth, sendBroadcast);
 router.post("/class", auth, sendClassNotification);

@@ -8,6 +8,7 @@ const {
   getAttendanceByClassDate,
   getStudentHistory,
   getStudentSummary,
+  getMyAttendance,
 } = require("../controllers/attendanceController");
 
 const { protect, authorize } = require("../middleware/authMiddleware");
@@ -21,6 +22,7 @@ router.get("/students/:classId", protect, getStudentsByClass);
 // 📄 Get Attendance (optional - for reports)
 router.get("/", protect, getAttendanceByDate);
 router.get("/by-date", protect, getAttendanceByClassDate);
+router.get("/my", protect, getMyAttendance);
 
 router.get("/student-history", protect, getStudentHistory);
 router.get("/student-summary", protect, getStudentSummary);
