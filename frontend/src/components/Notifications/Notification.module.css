@@ -1,0 +1,94 @@
+.notifContainer{
+  position: absolute;
+  top: 54px;
+  right: -150px;
+  width: 500px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 0 25px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+.notifContainer:before{
+  position: absolute;
+  content: "";
+  top: -14px;
+  right: 159px;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 15px solid var(--border-color);
+}
+.notifContainer:after{
+  position: absolute;
+  content: "";
+  top: -13px;
+  right: 160px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 14px solid #fff;
+}
+.notifHead{
+  justify-content: space-between!important;
+  padding: 15px 0;
+}
+.notifContainer h3{
+  font-family: var(--font-600);
+  font-size: var(--fs-xl);
+  color: var(--heading-color);
+  margin: 0;
+}
+
+.notifItem{
+  border-top: 1px solid var(--border-color);
+  padding:15px 10px 15px 0;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+}
+.notifItem .notifIcon{
+  width:48px;
+  height: 48px;
+  background: var(--primary-color);
+  border-radius: 100%;
+  font-size: var(--fs-2xl);
+  color: var(--white);
+}
+.notifDetail{
+  width: calc(100% - 48px);
+  padding-left: 15px;
+}
+.notifTitle{
+  font-family: var(--font-600);
+  font-size: var(--fs-base);
+  color: var(--heading-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notifTitle span.title{
+  overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 300px;
+}
+.notifTitle span.date{
+  font-size: var(--fs-xs);
+  font-family: var(--font-400);
+  color: var(--text-light);
+}
+.notifMessage{
+  font-family: var(--font-400);
+  font-size: 13px;
+  color: var(--heading-color);
+}
+.notifElem{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.notifFooter{
+      display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    border-top: 1px solid var(--border-color);
+}

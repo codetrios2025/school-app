@@ -1,0 +1,64 @@
+.buttonGap{
+  gap: 0 20px;
+}
+.btn{
+  border: 1px solid transparent;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-family: var(--font-500);
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-sm);
+  width: 160px;
+  justify-content: center;
+}
+.btn .icon{
+  margin-right: 5px;
+  font-size: var(--fs-md);
+  line-height: 14px;
+}
+.btn .iconRight{
+  margin-left: 5px;
+  font-size: var(--fs-md);
+  line-height: 14px;
+}
+.primaryBtn{
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
+}
+.primaryBtn:hover{
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+.borderBtn{
+  border-color: var(--border-color);
+  color: var(--text-light);
+}
+.borderBtn:hover{
+  background-color: var(--border-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+.planButton{
+  color: #0c40de;
+  font-family: var(--font-500);
+  font-size: var(--fs-base);
+  display: flex;
+  align-items: center;
+}
+
+.planButton .icon{
+  margin-right: 10px;
+  font-size: var(--fs-xl);
+}
+.flexRight{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+.btnSpace button{
+  margin-left: 15px;
+}

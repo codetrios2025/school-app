@@ -1,0 +1,145 @@
+:root {
+  /* =========================
+     COLORS
+  ========================= */
+
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+
+  --secondary-color: #8b5cf6;
+
+  --success-color: #22c55e;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #3b82f6;
+  --teal-color: #14b8a6;
+
+  --gray-light: #f0f3f8;
+
+  /* =========================
+     BACKGROUNDS
+  ========================= */
+
+  --body-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --dropdown-bg: #ffffff;
+  --input-bg: #ffffff;
+
+  /* =========================
+     Header
+  ========================= */
+   --header-bg: #ffffff;
+   --icon-color: #000000;
+   --icon-hover-bg: #f4f5f8;
+
+  /* =========================
+     SIDEBAR
+  ========================= */
+
+  --sidebar-bg: #041e52;
+  --sidebar-bg-light: #082b75;
+
+  --sidebar-text: #ffffff;
+  --sidebar-hover: rgba(255, 255, 255, 0.12);
+
+  --sidebar-active-bg: #2563eb;
+  --sidebar-active-text: #ffffff;
+
+  /* =========================
+     TEXT
+  ========================= */
+
+  --heading-color: #111827;
+  --title-color: #1f2937;
+
+  --text-color: #374151;
+  --text-light: #6b7280;
+  --text-muted: #9ca3af;
+
+  --white: #ffffff;
+  --black: #000000;
+
+  /* =========================
+     BORDERS
+  ========================= */
+
+  --border-color: #eceef3;
+  --border-light: #f1f5f9;
+
+  /* =========================
+     NOTIFICATION COLORS
+  ========================= */
+
+  --attendance-color: #22c55e;
+  --exam-color: #f59e0b;
+  --fees-color: #ef4444;
+  --homework-color: #8b5cf6;
+  --transport-color: #3b82f6;
+  --announcement-color: #14b8a6;
+
+  /* =========================
+     FONT FAMILY
+  ========================= */
+
+  --font-family: "Inter", sans-serif;
+
+  /* =========================
+     FONT SIZES
+  ========================= */
+
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-base: 16px;
+  --fs-md: 18px;
+  --fs-lg: 20px;
+  --fs-xl: 24px;
+  --fs-2xl: 30px;
+  --fs-3xl: 36px;
+  --fs-4xl: 42px;
+
+  /* =========================
+     FONT WEIGHTS
+  ========================= */
+
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* =========================
+     BORDER RADIUS
+  ========================= */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 999px;
+
+  /* =========================
+     SHADOWS
+  ========================= */
+  --shadow-xs: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.1);
+
+  --shadow-dropdown: 0 20px 60px rgba(0, 0, 0, 0.12);
+
+  /* =========================
+     TRANSITIONS
+  ========================= */
+
+  --transition: all 0.3s ease;
+
+  /* =========================
+     LAYOUT
+  ========================= */
+
+  --sidebar-width: 280px;
+  --header-height: 80px;
+}

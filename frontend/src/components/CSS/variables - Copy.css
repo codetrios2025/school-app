@@ -1,0 +1,61 @@
+:root {
+  /* ===== Gray Scale ===== */
+  --gray-10: #f5f6f7;
+  --gray-25: #dcdcdc;
+  --gray-50: #c4c4c4;
+  --gray-100: #a7a7a7;
+  --gray-200: #8a8a8a;
+  --gray-300: #6c6c6c;
+  --gray-400: #4f4f4f;
+  --gray-500: #424242;
+  --gray-600: #353535;
+  --gray-700: #282828;
+  --gray-800: #1a1a1a;
+  --gray-900: #101010;
+
+  /* ===== Primary Blue Scale ===== */
+  --blue-50: #e6f0fa;
+  --blue-100: #cce0f5;
+  --blue-200: #99c2eb;
+  --blue-300: #66a3e0;
+  --blue-400: #3385d6;
+  --blue-500: #1f6fb2; /* base primary */
+  --blue-600: #195a91;
+  --blue-700: #134570;
+  --blue-800: #0d2f4f;
+  --blue-900: #071a2e;
+
+  /* ===== Brand Colors ===== */
+  --primary: var(--blue-500);
+  --primary-light: var(--blue-300);
+  --primary-dark: var(--blue-700);
+
+  /* ===== Background & Text ===== */
+  --sidebar-bg: #152259;
+  --bg-color: #ffffff;
+  --text-color: var(--gray-900);
+  --text-muted: var(--gray-500);
+  --border-color: var(--gray-100);
+
+  /* ===== Text Color ===== */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-error: #eb3730;
+
+  /* ===== Font size ===== */
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-md: 16px;
+  --font-lg: 18px;
+  --font-xl: 20px;
+  --font-xxl: 22px;
+  --font-xxxl: 24px;
+
+  /* Box shadow */
+  --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0px 4px 8px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0px 8px 16px rgba(0, 0, 0, 0.05);
+  
+
+}

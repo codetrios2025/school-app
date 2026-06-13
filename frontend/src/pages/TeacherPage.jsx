@@ -83,7 +83,7 @@ export default function TeacherPage() {
   };
 
   return (
-    <DashboardLayout>
+    <>
       {/* HEADER */}
       <div className="flex justify-between items-center mb-6">
         <div>
@@ -220,6 +220,6 @@ export default function TeacherPage() {
         onSubmit={handleSubmit}
         editData={editData}
       />
-    </DashboardLayout>
+    </>
   );
 }

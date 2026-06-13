@@ -1,0 +1,70 @@
+.sidebar{
+  width: 100%;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(180deg,var(--sidebar-bg) 0%,var(--sidebar-bg-light) 100%);
+}
+.schoolInfo{
+  display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-200);
+    padding:30px;
+}
+.schoolInfo .logo{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.schoolInfo .logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.schoolInfo .schoolName{
+  font-size: var(--fs-xl);
+  font-family: var(--font-700);
+  /* color: var(--color-white); */
+  color:var(--primary-color);
+  margin: 0 0 0 15px;
+  line-height: normal;
+}
+.schoolInfo .schoolName span{
+  display: block;
+  font-size: var(--fs-sm);
+  color:var(--text-muted);
+  font-family: var(--font-400);
+}
+.navLinks{
+  padding: 15px 20px;
+}
+.navLinks ul li {
+  margin-bottom: 8px;
+}
+.navLinks ul li a{
+  padding: 10px 30px 10px 15px;
+  /* color: var(--color-white); */
+  color:var(--sidebar-text);
+  font-size: var(--fs-sm);
+  font-family: var(--font-500);
+  background: transparent;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  text-align: left; 
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+}
+.navLinks ul li a .icon{
+  margin-right: 18px;
+  font-size: 24px;
+}
+.navLinks ul li a:hover{
+  background: var(--sidebar-hover);
+
+}
+.navLinks ul li a.active{
+  background:var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
+
+}

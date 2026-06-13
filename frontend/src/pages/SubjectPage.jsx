@@ -78,7 +78,7 @@ export default function SubjectPage() {
   };
 
   return (
-    <DashboardLayout>
+    <>
       {/* HEADER */}
       <div className="flex justify-between items-center mb-6">
         <div>
@@ -219,6 +219,6 @@ export default function SubjectPage() {
         onSubmit={handleSubmit}
         editData={editData}
       />
-    </DashboardLayout>
+    </>
   );
 }

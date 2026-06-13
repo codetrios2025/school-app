@@ -86,7 +86,7 @@ export default function ClassPage() {
   };
 
   return (
-    <DashboardLayout>
+    <>
       {/* 🔝 HEADER */}
       <div className="flex justify-between items-center mb-6">
         <div>
@@ -251,6 +251,6 @@ export default function ClassPage() {
         onSubmit={handleSubmit}
         editData={editData}
       />
-    </DashboardLayout>
+    </>
   );
 }

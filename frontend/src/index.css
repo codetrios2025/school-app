@@ -1,3 +1,210 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './components/CSS/variables.css';
+
+@font-face {
+  font-family: 'KumbhSans Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('KumbhSans Light'), url('./assets/fonts/KumbhSans-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'KumbhSans Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('KumbhSans Regular'), url('./assets/fonts/KumbhSans-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'KumbhSans Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('KumbhSans Medium'), url('./assets/fonts/KumbhSans-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'KumbhSans SemiBold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('KumbhSans SemiBold'), url('./assets/fonts/KumbhSans-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'KumbhSans Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('KumbhSans Bold'), url('./assets/fonts/KumbhSans-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Inter Light'), url('./assets/fonts/Inter-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Inter Regular'), url('./assets/fonts/Inter-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Inter Medium'), url('./assets/fonts/Inter-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter SemiBold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Inter SemiBold'), url('./assets/fonts/Inter-SemiBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Inter Bold'), url('./assets/fonts/Inter-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter ExtraBold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Inter ExtraBold'), url('./assets/fonts/Inter-ExtraBold.woff') format('woff');
+}
+:root {
+  --font-300: 'KumbhSans Light', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-400: 'KumbhSans Regular', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-500: 'KumbhSans Medium', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-600: 'KumbhSans SemiBold', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-700: 'KumbhSans Bold', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Manifa Bold', system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+/* :root {
+  --font-300: 'Inter Light', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-400: 'Inter Regular', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-500: 'Inter Medium', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-600: 'Inter SemiBold', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-700: 'Inter Bold', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-900: 'Inter ExtraBold', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Manifa Bold', system-ui, 'Segoe UI', Roboto, sans-serif;
+} */
+*{box-sizing: border-box;}
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+body{
+  font-family: var(--font-400);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--body-bg);
+  color: var(--text-color);
+  font-size: var(--fs-base);
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+a{  
+  text-decoration: none;
+}
+figure{
+  margin: 0;
+}
+button{
+  margin: 0;
+}
+button, [role="button"]{
+  cursor: pointer;
+}
+.flex-align{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h1{font-family: var(--font-700);margin: 0;color: #15456E;font-size: var(--font-xxl);}
+h2{font-family: var(--font-700);margin: 0;color: var(--text-color);}
+
+/* Single select CSS */
+.singleSelect__control {
+  border: 1px solid var(--border-color)!important;
+  border-radius: var(--radius-xs)!important;
+  padding: 9px 12px;
+  font-family: var(--font-400);
+  font-size: var(--fs-sm);
+  width: 100%;
+}
+.singleSelect__control>div{
+  padding: 0;
+}
+.singleSelect__control>div>div{
+  margin: 0;
+}
+.singleSelect__control>div>div input{height: auto;}
+.singleSelect__control .singleSelect__indicator-separator{
+  display: none;
+}
+.singleSelect__control .singleSelect__indicator{
+  padding: 0;
+}
+
+/* Table style */
+.tableStyle{
+  width: 100%;
+  border-collapse: collapse;
+}
+.tableStyle thead th{
+  padding: 15px 20px;
+  border-top: 1px solid #eff2f6;
+  background: #fafbfd;
+}
+.tableStyle tbody td{
+  padding: 12px 20px;
+  border-top: 1px solid #eff2f6;
+}
+.tableStyle .p-column-header-content .p-column-title{
+  font-family: var(--font-600);
+  color: var(--heading-color);
+  font-size: var(--fs-sm);
+}
+.tableStyle .p-datatable-tbody td{
+  font-family: var(--font-500);
+  color: var(--heading-color);
+  font-size: var(--fs-sm);
+}
+.userCanva{
+  width: 30px;
+  height: 30px;
+}
+.actionBtnGroup{
+  gap: 5px;
+}
+.actionbtn{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    line-height: 16px;
+    width: 28px;
+    height: 26px;
+    background: red;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+.blueBg{
+  background-color: #2564eb26;
+  color: var(--primary-color);
+}
+.dangerBg{
+  color: var(--danger-color);
+  background: #ef444460
+}

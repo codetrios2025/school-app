@@ -90,7 +90,7 @@ export default function StudentPage() {
   };
 
   return (
-    <DashboardLayout>
+    <>
       {/* HEADER */}
       <div className="flex justify-between items-center mb-6">
         <div>
@@ -258,6 +258,6 @@ export default function StudentPage() {
         editData={editData}
         classes={classes}
       />
-    </DashboardLayout>
+    </>
   );
 }
