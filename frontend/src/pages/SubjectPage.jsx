@@ -82,7 +82,7 @@ export default function SubjectPage() {
       {/* HEADER */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold">Subjects</h1>
+          <h1 data-page-title className="text-2xl font-bold">Subjects</h1>
           <p className="text-gray-500 text-sm">Dashboard › Subjects</p>
         </div>
 

@@ -30,9 +30,12 @@ export default function App() {
 
   useEffect(() => {
     if (user?.id) {
-      socket.emit("join", user.id);
+      socket.connect();
+    } else {
+      socket.disconnect();
     }
-  }, [user]);
+    return () => socket.disconnect();
+  }, [user?.id]);
   return (
     <AppRoutes />
     // <BrowserRouter>

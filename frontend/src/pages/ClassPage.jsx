@@ -28,13 +28,32 @@ export default function ClassPage() {
       setClasses(res.data.data);
       setTotalPages(res.data.totalPages);
       setTotalRecords(res.data.total);
-    } catch (err) {
-      toast.error("Failed to fetch classes");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to fetch classes");
     }
   };
 
   useEffect(() => {
-    fetchClasses();
+    let active = true;
+    API.get(
+      `/classes?page=${page}&limit=6&search=${search}&sortField=${sortField}&sortOrder=${sortOrder}`,
+    )
+      .then((response) => {
+        if (!active) return;
+        setClasses(response.data.data || []);
+        setTotalPages(response.data.totalPages || 1);
+        setTotalRecords(response.data.total || 0);
+      })
+      .catch((error) => {
+        if (active) {
+          toast.error(
+            error.response?.data?.message || "Failed to fetch classes",
+          );
+        }
+      });
+    return () => {
+      active = false;
+    };
   }, [page, search, sortField, sortOrder]);
   const handleSort = (field) => {
     if (sortField === field) {
@@ -90,7 +109,7 @@ export default function ClassPage() {
       {/* 🔝 HEADER */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold">Classes</h1>
+          <h1 data-page-title className="text-2xl font-bold">Classes</h1>
           <p className="text-gray-500 text-sm">
             Dashboard <span className="mx-1">›</span> Classes
           </p>
@@ -151,6 +170,7 @@ export default function ClassPage() {
                 Section{" "}
                 {sortField === "section" && (sortOrder === "asc" ? "↑" : "↓")}
               </th>
+              <th className="px-6 py-3 text-left">Class Teacher</th>
               <th
                 onClick={() => handleSort("createdAt")}
                 className="px-6 py-3 text-left cursor-pointer"
@@ -177,6 +197,10 @@ export default function ClassPage() {
                   <span className="bg-green-100 text-green-600 px-3 py-1 rounded-md text-xs font-semibold">
                     {c.section}
                   </span>
+                </td>
+
+                <td className="px-6 py-3 text-gray-700">
+                  {c.classTeacherId?.name || "Not assigned"}
                 </td>
 
                 <td className="px-6 py-3 text-gray-500">

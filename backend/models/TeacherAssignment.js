@@ -4,8 +4,8 @@ const teacherAssignmentSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
       trim: true,
+      default: "Subject teaching assignment",
     },
     description: {
       type: String,

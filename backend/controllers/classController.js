@@ -1,4 +1,5 @@
 const Class = require("../models/Class");
+const User = require("../models/User");
 
 // ➕ Create Class
 exports.createClass = async (req, res) => {
@@ -69,6 +70,7 @@ exports.getClasses = async (req, res) => {
 
     // 🔹 Fetch data
     const data = await Class.find(query)
+      .populate("classTeacherId", "name email teacherProfile.employeeId")
       .sort(sort)
       .skip((page - 1) * limit)
       .limit(limit);
@@ -87,6 +89,41 @@ exports.getClasses = async (req, res) => {
       success: false,
       message: err.message || "Server Error",
     });
+  }
+};
+
+exports.updateClassTeacher = async (req, res) => {
+  try {
+    const { teacherId } = req.body;
+    if (teacherId) {
+      const teacher = await User.findOne({
+        _id: teacherId,
+        role: "teacher",
+        $or: [{ status: "active" }, { status: { $exists: false } }],
+      });
+      if (!teacher) {
+        return res.status(400).json({
+          success: false,
+          message: "Select an active teacher",
+        });
+      }
+    }
+
+    const schoolClass = await Class.findByIdAndUpdate(
+      req.params.id,
+      { classTeacherId: teacherId || null },
+      { new: true, runValidators: true },
+    ).populate("classTeacherId", "name email teacherProfile.employeeId");
+
+    if (!schoolClass) {
+      return res.status(404).json({
+        success: false,
+        message: "Class not found",
+      });
+    }
+    return res.json({ success: true, data: schoolClass });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
   }
 };
 

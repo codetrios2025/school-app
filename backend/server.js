@@ -6,14 +6,23 @@ const hpp = require("hpp");
 const cors = require("cors");
 const http = require("http"); // ✅ NEW
 const { Server } = require("socket.io"); // ✅ NEW
+const jwt = require("jsonwebtoken");
+const TokenBlacklist = require("./models/TokenBlacklist");
 
 const connectDB = require("./config/db");
 
 const app = express();
+const defaultJsonParser = express.json({ limit: "10kb" });
+const importJsonParser = express.json({ limit: "1mb" });
 
 // 🔐 Security Middlewares
 app.use(helmet());
-app.use(express.json({ limit: "10kb" }));
+app.use((req, res, next) => {
+  const isImportRequest =
+    req.method === "POST" &&
+    ["/api/students/import", "/api/teachers/import", "/api/fees/import"].includes(req.path);
+  (isImportRequest ? importJsonParser : defaultJsonParser)(req, res, next);
+});
 app.use(hpp());
 app.use(cors());
 
@@ -50,15 +59,25 @@ const io = new Server(server, {
   },
 });
 
+io.use(async (socket, next) => {
+  try {
+    const token = socket.handshake.auth?.token;
+    if (!token || (await TokenBlacklist.exists({ token }))) {
+      return next(new Error("Unauthorized"));
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded.id) return next(new Error("Unauthorized"));
+    socket.data.userId = String(decoded.id);
+    return next();
+  } catch {
+    return next(new Error("Unauthorized"));
+  }
+});
+
 // 🔌 Socket connection
 io.on("connection", (socket) => {
   console.log("🔌 User connected:", socket.id);
-
-  // 🎯 Join user room
-  socket.on("join", (userId) => {
-    socket.join(userId);
-    console.log(`User joined room: ${userId}`);
-  });
+  socket.join(socket.data.userId);
 
   socket.on("disconnect", () => {
     console.log("❌ User disconnected:", socket.id);
@@ -81,6 +100,9 @@ app.use("/api/attendance", require("./routes/attendanceRoutes"));
 app.use("/api/reports", require("./routes/reportRoutes"));
 app.use("/api/notifications", require("./routes/notificationRoutes"));
 app.use("/api/parent", require("./routes/parentRoutes"));
+app.use("/api/fees", require("./routes/feeRoutes"));
+app.use("/api/dashboard", require("./routes/dashboardRoutes"));
+app.use("/api/school-settings", require("./routes/schoolSettingsRoutes"));
 
 // ==============================
 // START SERVER

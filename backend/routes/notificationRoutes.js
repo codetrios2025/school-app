@@ -1,32 +1,27 @@
 const express = require("express");
 const router = express.Router();
 const {
-  sendBroadcast,
-  sendClassNotification,
   getMyNotifications,
   getUnreadCount,
   markAsRead,
   sendNotification,
-  getTeacherClasses,
-  getNotificationsWithFilter,
+  getNotificationClasses,
+  getNotificationRecipients,
+  getNotificationHistory,
+  markAllAsRead,
   deleteNotification,
-  getNotifications,
-} = require("../controllers/notificationController");
+} = require("../controllers/notificationModuleController");
 
-const { protect: auth } = require("../middleware/authMiddleware");
+const { protect, authorize } = require("../middleware/authMiddleware");
 
-router.post("/", auth, sendNotification);
-router.get("/", auth, getNotifications);
-
-router.post("/broadcast", auth, sendBroadcast);
-router.post("/class", auth, sendClassNotification);
-
-router.get("/", auth, getMyNotifications);
-router.get("/count", auth, getUnreadCount);
-router.put("/:id/read", auth, markAsRead);
-router.get("/teacher-classes", auth, getTeacherClasses);
-
-router.get("/history", auth, getNotificationsWithFilter);
-router.delete("/:id", auth, deleteNotification);
+router.post("/", protect, authorize("admin", "teacher"), sendNotification);
+router.get("/", protect, getMyNotifications);
+router.get("/count", protect, getUnreadCount);
+router.get("/history", protect, authorize("admin", "teacher"), getNotificationHistory);
+router.get("/classes", protect, authorize("admin", "teacher"), getNotificationClasses);
+router.get("/recipients", protect, authorize("admin", "teacher"), getNotificationRecipients);
+router.put("/read-all", protect, markAllAsRead);
+router.put("/:id/read", protect, markAsRead);
+router.delete("/:id", protect, authorize("admin"), deleteNotification);
 
 module.exports = router;

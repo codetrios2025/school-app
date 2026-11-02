@@ -8,12 +8,19 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-exports.sendEmail = async ({ to, subject, html }) => {
+exports.sendEmail = async ({
+  to,
+  subject,
+  html,
+  fromName = "School App",
+  attachments,
+}) => {
   await transporter.sendMail({
-    from: `"School App" <${process.env.EMAIL_USER}>`,
+    from: `"${String(fromName).replace(/["\r\n]/g, "")}" <${process.env.EMAIL_USER}>`,
     to,
     subject,
     html,
+    ...(attachments?.length && { attachments }),
   });
 };
 

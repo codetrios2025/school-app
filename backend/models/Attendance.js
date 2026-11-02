@@ -42,7 +42,7 @@ const attendanceSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-// ❗ Prevent duplicate attendance per day
 attendanceSchema.index({ classId: 1, subjectId: 1, date: 1 }, { unique: true });
+attendanceSchema.index({ "records.studentId": 1, date: -1 });
 
 module.exports = mongoose.model("Attendance", attendanceSchema);

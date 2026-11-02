@@ -87,7 +87,7 @@ export default function TeacherPage() {
       {/* HEADER */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold">Teachers</h1>
+          <h1 data-page-title className="text-2xl font-bold">Teachers</h1>
           <p className="text-gray-500 text-sm">Dashboard › Teachers</p>
         </div>
 

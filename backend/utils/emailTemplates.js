@@ -1,3 +1,54 @@
+const escapeHtml = (value) =>
+  String(value ?? "").replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[character]);
+
+exports.notificationEmailTemplate = ({
+  schoolName,
+  title,
+  message,
+  logoCid,
+  email,
+  phone,
+  address,
+  website,
+  mapUrl,
+}) => {
+  const addressText = [address, mapUrl ? `<a href="${escapeHtml(mapUrl)}">View school location</a>` : ""]
+    .filter(Boolean)
+    .join(" · ");
+  const contactText = [
+    email ? `<a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a>` : "",
+    phone ? `<a href="tel:${escapeHtml(phone)}">${escapeHtml(phone)}</a>` : "",
+    website ? `<a href="${escapeHtml(website)}">${escapeHtml(website)}</a>` : "",
+  ].filter(Boolean).join(" · ");
+
+  return `
+    <div style="background:#f1f5f9;padding:32px 12px;font-family:Arial,sans-serif;color:#0f172a">
+      <div style="max-width:620px;margin:0 auto;background:#fff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden">
+        <div style="background:#312e81;padding:24px 28px;color:#fff">
+          ${logoCid ? `<img src="cid:${escapeHtml(logoCid)}" alt="${escapeHtml(schoolName)}" style="display:block;max-width:180px;max-height:64px;object-fit:contain;margin-bottom:16px">` : ""}
+          <div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;opacity:.8">School notification</div>
+          <h1 style="font-size:22px;line-height:1.35;margin:8px 0 0">${escapeHtml(title)}</h1>
+        </div>
+        <div style="padding:28px">
+          <p style="font-size:15px;line-height:1.7;white-space:pre-line;margin:0">${escapeHtml(message)}</p>
+        </div>
+        <div style="border-top:1px solid #e2e8f0;background:#f8fafc;padding:20px 28px">
+          <strong style="font-size:14px;color:#312e81">${escapeHtml(schoolName)}</strong>
+          ${addressText ? `<div style="font-size:12px;line-height:1.6;color:#475569;margin-top:6px">${addressText}</div>` : ""}
+          ${contactText ? `<div style="font-size:12px;line-height:1.6;color:#475569;margin-top:4px">${contactText}</div>` : ""}
+        </div>
+      </div>
+      <div style="max-width:620px;margin:12px auto 0;text-align:center;font-size:11px;color:#64748b">Sent through the school notification system.</div>
+    </div>
+  `;
+};
+
 exports.userWelcomeTemplate = ({ name, email, password, role, loginUrl }) => {
   return `
   <div style="font-family: Arial; max-width:600px; margin:auto; border:1px solid #ddd; padding:20px;">

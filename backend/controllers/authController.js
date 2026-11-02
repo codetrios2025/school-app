@@ -44,6 +44,12 @@ exports.login = async (req, res) => {
         message: "Invalid credentials",
       });
     }
+    if (user.status === "inactive") {
+      return res.status(403).json({
+        success: false,
+        message: "This account is inactive. Contact your school administrator.",
+      });
+    }
 
     const token = jwt.sign(
       { id: user._id, role: user.role },
